@@ -2,43 +2,43 @@ package com.globant.counter.android.mvp.presenter;
 
 import android.app.Activity;
 
-import com.globant.counter.android.util.bus.observers.CountButtonUpBusObserver;
-import com.globant.counter.android.util.bus.observers.ResetButtonObserver;
-import com.globant.counter.android.util.bus.RxBus;
 import com.globant.counter.android.mvp.model.CountModel;
 import com.globant.counter.android.mvp.view.CountView;
+import com.globant.counter.android.util.bus.RxBus;
+import com.globant.counter.android.util.bus.observers.CheckButtonBusObserver;
+import com.globant.counter.android.util.bus.observers.ResetButtonObserver;
 
-public class CountPresenter {
+public class CalculatorPresenter {
 
     private CountModel model;
     private CountView view;
 
-    public CountPresenter(CountModel model, CountView view) {
+    public CalculatorPresenter(CountModel model, CountView view) {
         this.model = model;
         this.view = view;
     }
 
-    public void onCountButtonPressed() {
-        model.inc();
-        view.setCount(String.valueOf(model.getCount()));
+    public void onCheckButtonPressed() {
+        String formula = view.getFormula();
+        model.execute(formula);
+        view.setResult(String.valueOf(model.execute(formula)));
     }
 
     public void onResetButtonPressed() {
-        model.reset();
-        view.setCount(String.valueOf(model.getCount()));
+        view.reset();
     }
 
     public void register() {
         Activity activity = view.getActivity();
 
-        if (activity==null){
+        if (activity == null) {
             return;
         }
 
-        RxBus.subscribe(activity, new CountButtonUpBusObserver() {
+        RxBus.subscribe(activity, new CheckButtonBusObserver() {
             @Override
-            public void onEvent(CountButtonUpBusObserver.CountButtonUp value) {
-                onCountButtonPressed();
+            public void onEvent(CheckButton value) {
+                onCheckButtonPressed();
             }
         });
 
@@ -54,7 +54,7 @@ public class CountPresenter {
     public void unregister() {
         Activity activity = view.getActivity();
 
-        if (activity==null){
+        if (activity == null) {
             return;
         }
         RxBus.clear(activity);
