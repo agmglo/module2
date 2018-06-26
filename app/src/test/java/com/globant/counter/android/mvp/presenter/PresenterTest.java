@@ -9,9 +9,8 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.*;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
+import static org.mockito.Mockito.when;
 
 
 /**
@@ -21,38 +20,45 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
  */
 public class PresenterTest {
 
-    private CountPresenter presenter;
-    @Mock CountModel model;
-    @Mock CountView view;
+    private CalculatorPresenter presenter;
+    @Mock
+    private
+    CountModel model;
+    @Mock
+    private
+    CountView view;
 
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        presenter = new CountPresenter(model, view);
+        presenter = new CalculatorPresenter(model, view);
     }
 
     @Test
-    public void shouldIncCountByOne() {
-        when(model.getCount()).thenReturn(1);
-        presenter.onCountButtonPressed();
-        verify(model).inc();
-        verify(view).setCount("1");
+    public void shouldAddNumbers() {
+        when(model.execute("15+21=")).thenReturn(36.0);
+        assertEquals(model.execute("15+21="), 36, 0);
         verifyNoMoreInteractions(view);
     }
 
     @Test
-    public void shouldResetCount() {
-        when(model.getCount()).thenReturn(3);
-        presenter.onCountButtonPressed();
-        presenter.onCountButtonPressed();
-        presenter.onCountButtonPressed();
-        verify(model,times(3)).inc();
-        assertEquals(model.getCount(), 3);
-        when(model.getCount()).thenReturn(0);
-        presenter.onResetButtonPressed();
-        verify(model).reset();
-        assertEquals(model.getCount(), 0);
-        verify(view, times(4)).setCount(anyString());
+    public void shouldDivideNumbers() {
+        when(model.execute("15/5=")).thenReturn(3.0);
+        assertEquals(model.execute("15/5="), 3.0, 0);
+        verifyNoMoreInteractions(view);
+    }
+
+    @Test
+    public void shouldMultiplyNumbers() {
+        when(model.execute("12*12=")).thenReturn(144.0);
+        assertEquals(model.execute("12*12="), 144.0, 0);
+        verifyNoMoreInteractions(view);
+    }
+
+    @Test
+    public void shouldSubstractNumbers() {
+        when(model.execute("150-99=")).thenReturn(51.0);
+        assertEquals(model.execute("150-99="), 51.0, 0);
         verifyNoMoreInteractions(view);
     }
 }

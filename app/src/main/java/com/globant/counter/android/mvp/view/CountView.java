@@ -29,13 +29,17 @@ public class CountView extends ActivityView {
         countLabel.setText(count);
     }
 
-    public void reset(){
+    public void reset() {
         setResult("0");
         countEdit.setText("");
     }
 
     public String getFormula() {
         return countEdit.getText().toString();
+    }
+
+    public void setFormula(String text) {
+        countEdit.setText(text);
     }
 
     @OnClick(R.id.check_button)

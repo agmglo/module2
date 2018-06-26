@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 
 public class CountModel {
 
-    public float execute(String formula) {
+    public double execute(String formula) {
         float value = 0;
 
         if (formula == null || !formula.endsWith("="))
