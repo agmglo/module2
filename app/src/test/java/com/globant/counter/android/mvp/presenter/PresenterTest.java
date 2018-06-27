@@ -21,12 +21,8 @@ import static org.mockito.Mockito.when;
 public class PresenterTest {
 
     private CalculatorPresenter presenter;
-    @Mock
-    private
-    CountModel model;
-    @Mock
-    private
-    CountView view;
+    @Mock private CountModel model;
+    @Mock private CountView view;
 
     @Before
     public void setup() {
