@@ -10,17 +10,13 @@ public class CountModel {
 
     public double execute(String formula) {
         float value = 0;
-
-        if (formula == null || !formula.endsWith("="))
+        if (formula == null || !formula.endsWith("=")) {
             return value;
-
+        }
         formula = formula.replaceAll("=", "");
-
         String action = getAction(formula);
-
         List<String> list = Arrays.asList(formula.split("[+-/*]"));
         value = Float.parseFloat(list.get(0));
-
         for(int i=1; i<list.size(); i++){
             String number = list.get(i);
             switch (action){
@@ -38,7 +34,6 @@ public class CountModel {
                     break;
             }
         }
-
         return value;
     }
 

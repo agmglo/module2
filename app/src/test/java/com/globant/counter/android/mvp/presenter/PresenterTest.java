@@ -32,29 +32,33 @@ public class PresenterTest {
 
     @Test
     public void shouldAddNumbers() {
-        when(model.execute("15+21=")).thenReturn(36.0);
-        assertEquals(model.execute("15+21="), 36, 0);
+        String formula = "15+21=";
+        when(model.execute(formula)).thenReturn(36.0);
+        assertEquals(model.execute(formula), 36, 0);
         verifyNoMoreInteractions(view);
     }
 
     @Test
     public void shouldDivideNumbers() {
-        when(model.execute("15/5=")).thenReturn(3.0);
-        assertEquals(model.execute("15/5="), 3.0, 0);
+        String formula = "15/5=";
+        when(model.execute(formula)).thenReturn(3.0);
+        assertEquals(model.execute(formula), 3.0, 0);
         verifyNoMoreInteractions(view);
     }
 
     @Test
     public void shouldMultiplyNumbers() {
-        when(model.execute("12*12=")).thenReturn(144.0);
-        assertEquals(model.execute("12*12="), 144.0, 0);
+        String formula = "12*12=";
+        when(model.execute(formula)).thenReturn(144.0);
+        assertEquals(model.execute(formula), 144.0, 0);
         verifyNoMoreInteractions(view);
     }
 
     @Test
-    public void shouldSubstractNumbers() {
-        when(model.execute("150-99=")).thenReturn(51.0);
-        assertEquals(model.execute("150-99="), 51.0, 0);
+    public void shouldSubtractNumbers() {
+        String formula = "150-99=";
+        when(model.execute(formula)).thenReturn(51.0);
+        assertEquals(model.execute(formula), 51.0, 0);
         verifyNoMoreInteractions(view);
     }
 }
