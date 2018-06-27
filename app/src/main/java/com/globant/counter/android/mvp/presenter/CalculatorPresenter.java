@@ -30,30 +30,25 @@ public class CalculatorPresenter {
 
     public void register() {
         Activity activity = view.getActivity();
-
         if (activity == null) {
             return;
         }
-
         RxBus.subscribe(activity, new CheckButtonBusObserver() {
             @Override
             public void onEvent(CheckButton value) {
                 onCheckButtonPressed();
             }
         });
-
         RxBus.subscribe(activity, new ResetButtonObserver() {
             @Override
             public void onEvent(ResetButtonPressed value) {
                 onResetButtonPressed();
             }
         });
-
     }
 
     public void unregister() {
         Activity activity = view.getActivity();
-
         if (activity == null) {
             return;
         }

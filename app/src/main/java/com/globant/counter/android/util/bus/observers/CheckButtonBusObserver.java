@@ -6,6 +6,6 @@ public abstract class CheckButtonBusObserver extends BusObserver<CheckButtonBusO
     }
 
     public static class CheckButton {
-
+        //do nothing
     }
 }
