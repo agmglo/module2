@@ -3,4 +3,6 @@
     <string name="intial_value">0</string>
     <string name="inc">inc</string>
     <string name="reset">reset</string>
+    <string name="edit_hint_main">enter formula...</string>
+    <string name="check">Check</string>
 </resources>
